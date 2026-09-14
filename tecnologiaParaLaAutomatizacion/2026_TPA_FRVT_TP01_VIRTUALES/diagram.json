@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "author": "Christian Schneider, Marcela Gaiga, Mauricio Pereyra",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": 20, "left": -230, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -76.5, "left": -130.2, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "ledRiego",
+      "top": -90,
+      "left": -53.8,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledVentilacion",
+      "top": -90,
+      "left": 99.8,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": -121.66,
+      "left": 259.43,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-ky-040", "id": "encoder1", "top": -27.1, "left": 335.2, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btnPantallas",
+      "top": -13,
+      "left": 211.2,
+      "attrs": { "color": "yellow" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:33", "dht1:SDA", "green", [ "h-50" ] ],
+    [ "esp:5V", "dht1:VCC", "red", [ "h-50" ] ],
+    [ "esp:GND.1", "dht1:GND", "black", [ "h-50" ] ],
+    [ "esp:32", "pot1:SIG", "green", [ "h-52.61", "v28.8", "h-143" ] ],
+    [ "esp:5V", "pot1:VCC", "red", [ "h-50" ] ],
+    [ "esp:GND.1", "pot1:GND", "black", [ "h-50" ] ],
+    [ "esp:27", "ledRiego:A", "blue", [ "h-50" ] ],
+    [ "esp:GND.1", "ledRiego:C", "black", [ "h-50" ] ],
+    [ "esp:23", "ledVentilacion:A", "green", [ "h50" ] ],
+    [ "esp:GND.3", "ledVentilacion:C", "black", [ "h50" ] ],
+    [ "esp:21", "oled1:SDA", "orange", [ "h52.84", "v-259.2", "h172.73" ] ],
+    [ "esp:22", "oled1:SCL", "yellow", [ "h62.44", "v-220.8", "h153.3" ] ],
+    [ "esp:3V3", "oled1:VCC", "red", [ "v-182.4", "h254.44" ] ],
+    [ "esp:GND.3", "oled1:GND", "black", [ "h43.24", "v-230.4", "h153.6" ] ],
+    [ "esp:18", "encoder1:CLK", "limegreen", [ "h408.04", "v-124.8" ] ],
+    [ "esp:5", "encoder1:DT", "cyan", [ "h398.44", "v-124.9" ] ],
+    [ "esp:19", "encoder1:SW", "blue", [ "h388.84", "v-96.1" ] ],
+    [ "esp:5V", "encoder1:VCC", "red", [ "v19.2", "h475.39", "v-211.6" ] ],
+    [ "esp:GND.3", "encoder1:GND", "black", [ "h369.64", "v-68" ] ],
+    [ "esp:4", "btnPantallas:1.l", "cyan", [ "h100.84", "v-144" ] ],
+    [ "esp:GND.3", "btnPantallas:2.l", "black", [ "h91.24", "v-67.4" ] ]
+  ],
+  "dependencies": {}
+}
